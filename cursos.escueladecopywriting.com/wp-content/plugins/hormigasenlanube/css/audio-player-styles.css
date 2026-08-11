@@ -1,0 +1,90 @@
+/* Player background */
+.estilo-audio-reproductor .mejs-container,
+.estilo-audio-reproductor .mejs-controls,
+.estilo-audio-reproductor .mejs-embed,
+.estilo-audio-reproductor .mejs-embed body {
+  background-color: #17b6fc;
+  border-radius: 5px;
+}
+
+/* Player controls */
+/*.estilo-audio-reproductor .mejs-button > button {
+  background-color: #ffa500;
+  border-radius: 50%;
+  padding:12px;
+  margin: 6px 6px;
+}*/
+
+.estilo-audio-reproductor .mejs-volume-button > button {
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
+  margin: 10px 6px;
+}
+
+/*.estilo-audio-reproductor  .mejs-play>button {
+    background-position: 3px 3px;
+}
+
+.mejs-replay>button {
+    background-position: -159px 2px;
+    }
+
+.mejs-pause>button {
+    background-position: -18px 3px;
+}*/
+
+.estilo-audio-reproductor .mejs-time {
+  color: #fff;
+}
+
+/* Progress and audio bars */
+
+/* Progress and audio bar background */
+.estilo-audio-reproductor .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-total,
+.estilo-audio-reproductor .mejs-controls .mejs-time-rail .mejs-time-total {
+  background-color: #fff;
+}
+
+/* Track progress bar background (amount of track fully loaded)
+  We prefer to style these with the main accent color of our theme */
+.estilo-audio-reproductor .mejs-controls .mejs-time-rail .mejs-time-loaded {
+  background-color: rgba(219, 78, 136, 0.075);
+}
+
+/* Current track progress and active audio volume level bar */
+.estilo-audio-reproductor .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current,
+.estilo-audio-reproductor .mejs-controls .mejs-time-rail .mejs-time-current {
+  background: #ffa500;
+}
+
+/* Reduce height of the progress and audio bars */
+.estilo-audio-reproductor .mejs-time-buffering,
+.estilo-audio-reproductor .mejs-time-current,
+.estilo-audio-reproductor .mejs-time-float,
+.estilo-audio-reproductor .mejs-time-float-corner,
+.estilo-audio-reproductor .mejs-time-float-current,
+.estilo-audio-reproductor .mejs-time-hovered,
+.estilo-audio-reproductor .mejs-time-loaded,
+.estilo-audio-reproductor .mejs-time-marker,
+.estilo-audio-reproductor .mejs-time-total,
+.estilo-audio-reproductor .mejs-horizontal-volume-total,
+.estilo-audio-reproductor .mejs-time-handle-content {
+  height: 5px;
+}
+
+.estilo-audio-reproductor .mejs-controls .mejs-time-rail span {
+    border-radius: 3px;
+  }
+
+.estilo-audio-reproductor .mejs-time-handle-content {
+  top: -6px;
+}
+
+.estilo-audio-reproductor .mejs-time-total {
+  margin-top: 8px;
+}
+
+.estilo-audio-reproductor .mejs-horizontal-volume-total {
+  top: 19px;
+}

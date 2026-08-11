@@ -1,0 +1,1417 @@
+@charset "UTF-8";
+/* line 1, ../sass/note.scss */
+.nt-note-wrapper,
+.nt-note-tab {
+  background: rgba(0, 0, 0, 0.95);
+  position: fixed;
+  z-index: 9000;
+  right: 30px;
+}
+
+/* line 10, ../sass/note.scss */
+.nt-note-tab.ldnt-style-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50% !important;
+  display: flex;
+  padding: 15px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.1) !important;
+  transition: all ease-in-out 250ms;
+}
+/* line 20, ../sass/note.scss */
+.nt-note-tab.ldnt-style-circle .nt-screen-reader-text {
+  display: none;
+}
+/* line 23, ../sass/note.scss */
+.nt-note-tab.ldnt-style-circle .nticon-doc {
+  margin: 0;
+  padding: 0;
+  line-height: 1em;
+  border: 0;
+  font-size: 24px;
+  background: transparent;
+}
+/* line 32, ../sass/note.scss */
+.nt-note-tab.ldnt-style-circle.ldnt-has-note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+}
+/* line 43, ../sass/note.scss */
+.nt-note-tab.ldnt-style-circle:hover {
+  transform: scale(1.1);
+}
+/* line 46, ../sass/note.scss */
+.nt-note-tab.ldnt-style-circle.bottom {
+  bottom: 50px;
+}
+/* line 49, ../sass/note.scss */
+.nt-note-tab.ldnt-style-circle.top {
+  top: 50px;
+}
+
+/* line 55, ../sass/note.scss */
+#nt-course-note {
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+/* line 60, ../sass/note.scss */
+#nt-course-note .mce-statusbar {
+  display: none;
+}
+
+/* line 65, ../sass/note.scss */
+.mce-floatpanel {
+  z-index: 99999999999 !important;
+}
+
+/* line 69, ../sass/note.scss */
+.nt-note-wrapper {
+  top: 30%;
+  right: 30px;
+}
+
+/* line 74, ../sass/note.scss */
+.nt-note-tab {
+  text-align: center;
+  display: block;
+  color: #fff;
+  font-weight: bold;
+  bottom: 0;
+  text-decoration: none;
+  border-bottom: 0 !important;
+  font-size: 14px;
+  box-shadow: none !important;
+  transition: all ease-in-out 250ms;
+}
+/* line 85, ../sass/note.scss */
+.nt-note-tab.ldnt-style-tab {
+  display: flex;
+  align-items: center;
+}
+/* line 89, ../sass/note.scss */
+.nt-note-tab.ldnt-style-tab.ldnt-has-note i.nticon-doc {
+  background: rgba(255, 255, 255, 0.25);
+  /*
+  width: 40px;
+  height: 40px;
+  margin-left: 8px;
+  border-radius: 100%;
+  color: rgba(0,0,0,0.8);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  */
+}
+/* line 104, ../sass/note.scss */
+.nt-note-tab:hover {
+  color: #fff;
+  opacity: 0.8;
+}
+/* line 108, ../sass/note.scss */
+.nt-note-tab i {
+  display: block;
+  padding: 14px 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 16px;
+}
+/* line 115, ../sass/note.scss */
+.nt-note-tab span {
+  display: inline-block;
+  padding: 14px 30px;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+/* line 122, ../sass/note.scss */
+.nt-note-tab::after {
+  display: none;
+}
+/* line 125, ../sass/note.scss */
+.nt-note-tab.bottom {
+  border-radius: 2px 2px 0 0;
+}
+/* line 128, ../sass/note.scss */
+.nt-note-tab.top {
+  border-radius: 0 0 2px 2px;
+}
+/* line 131, ../sass/note.scss */
+.nt-note-tab.right {
+  bottom: auto;
+  left: auto;
+  right: 0 !important;
+  top: 50%;
+  transform: rotate(-90deg) translateX(50%);
+  transform-origin: bottom right;
+  border-radius: 2px 2px 0 0;
+}
+
+/* line 143, ../sass/note.scss */
+#nt-note-body {
+  color: #000;
+}
+
+/* line 147, ../sass/note.scss */
+.ld-note-icon {
+  background: #f1f1f1;
+  color: #333;
+  padding: 5px 10px;
+  margin-left: 0.5em;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  border-radius: 3px;
+}
+
+/* line 157, ../sass/note.scss */
+.ld-table-list-item .ld-note-icon {
+  font-weight: bold;
+  font-size: 12px;
+  color: #333;
+  display: inline-block;
+  margin: 10px 0 0;
+  padding: 0 10px;
+}
+
+/* line 166, ../sass/note.scss */
+.nt-note-tab.top {
+  bottom: auto;
+  top: 0;
+  border-radius: 0 0 2px 2px;
+}
+
+/* line 172, ../sass/note.scss */
+body.admin-bar .nt-note-tab.top {
+  top: 32px;
+}
+
+/* line 176, ../sass/note.scss */
+.nt-note-tab i {
+  display: inline-block;
+  font-size: 16px;
+  color: #fff;
+}
+
+/* line 182, ../sass/note.scss */
+.ldnt-content-notes {
+  text-align: center;
+  position: relative;
+  z-index: 9999;
+}
+/* line 186, ../sass/note.scss */
+.ldnt-content-notes .nt-note-tab {
+  position: static;
+  display: inline-block;
+  margin: 20px auto;
+  color: #fff;
+}
+/* line 191, ../sass/note.scss */
+.ldnt-content-notes .nt-note-tab i {
+  font-size: 16px;
+}
+/* line 195, ../sass/note.scss */
+.ldnt-content-notes .nt-note-wrapper {
+  width: 100% !important;
+  margin: 30px 0;
+}
+/* line 198, ../sass/note.scss */
+.ldnt-content-notes .nt-note-wrapper .nt-reset-dimensions,
+.ldnt-content-notes .nt-note-wrapper .nt-close-icon {
+  display: none !important;
+}
+
+/* line 205, ../sass/note.scss */
+.nt-screen-reader-text {
+  display: inline-block;
+}
+
+/* line 209, ../sass/note.scss */
+.nt-note-wrapper {
+  top: 200px;
+  right: 15px;
+  min-width: 350px;
+  max-width: 350px;
+  width: auto;
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+/* line 219, ../sass/note.scss */
+.nt-note-wrapper .note-body {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  /*
+  .mce-edit-area,
+  .mce-container-body,
+  iframe {
+       height: 100% !important;
+       overflow: scroll;
+  } */
+}
+/* line 223, ../sass/note.scss */
+.nt-note-wrapper .note-body .nt-note-editor-body,
+.nt-note-wrapper .note-body .wp-editor-wrap,
+.nt-note-wrapper .note-body .wp-editor-container,
+.nt-note-wrapper .note-body .mce-panel,
+.nt-note-wrapper .note-body #nt-course-note {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  overflow: hidden;
+}
+/* line 233, ../sass/note.scss */
+.nt-note-wrapper .note-body .mce-container-body {
+  width: 100%;
+}
+/* line 236, ../sass/note.scss */
+.nt-note-wrapper .note-body .nt-note-editor-body {
+  overflow: hidden;
+}
+
+/* line 249, ../sass/note.scss */
+.ldnt-in-content-notes .nt-note-wrapper {
+  max-width: 100%;
+}
+
+/* line 253, ../sass/note.scss */
+.nt-utility-links {
+  text-align: center;
+  font-size: 12px;
+  clear: both;
+}
+
+/* line 259, ../sass/note.scss */
+.nt-utility-links span {
+  opacity: 0.5;
+}
+
+/* line 263, ../sass/note.scss */
+.nt-utility-links a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* line 268, ../sass/note.scss */
+.nt-note-wrapper.nt-dragged {
+  right: auto;
+}
+
+/* line 272, ../sass/note.scss */
+.nt-note-wrapper.nt-resized {
+  max-width: unset;
+  min-width: unset;
+}
+
+/* line 277, ../sass/note.scss */
+.nt-note-wrapper #nt-note-body_ifr {
+  max-width: 100%;
+}
+
+/* line 281, ../sass/note.scss */
+.note-header-title {
+  background: rgba(66, 66, 66, 0.8);
+  margin: -15px -25px 10px -25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 15px 25px 15px 25px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 12px;
+  cursor: grab;
+  color: #fff;
+}
+
+/* line 294, ../sass/note.scss */
+.nt-screen-reader-text {
+  display: inline-block;
+}
+
+/* line 298, ../sass/note.scss */
+.note-body input:focus {
+  background: #fff;
+}
+
+/* line 302, ../sass/note.scss */
+.nt-close-icon {
+  /* RESET */
+  border: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  text-shadow: none;
+  height: auto;
+  width: auto;
+  /* END RESET */
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: normal;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  width: 50px;
+  border-radius: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* line 331, ../sass/note.scss */
+#nt-note-actions {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: #f3f3f3;
+}
+
+/* line 342, ../sass/note.scss */
+#nt-note-actions li {
+  width: 15%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 55px;
+}
+
+/* line 350, ../sass/note.scss */
+#nt-note-actions li:first-child {
+  width: 75%;
+}
+
+/* line 354, ../sass/note.scss */
+#nt-note-actions li:nth-child(2) {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* line 357, ../sass/note.scss */
+#nt-note-actions li:nth-child(3) {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* line 361, ../sass/note.scss */
+#nt-note-actions li a {
+  text-decoration: none !important;
+  border: 0 !important;
+  box-shadow: none;
+}
+
+/* line 367, ../sass/note.scss */
+.coursenote-embedded-editor #nt-note-actions li:nth-child(2),
+.coursenote-embedded-editor #nt-note-actions li:nth-child(3) {
+  border: 0;
+  border-left: 1px solid #fff;
+}
+
+/* line 373, ../sass/note.scss */
+#nt-note-actions li a {
+  font-size: 18px;
+  color: #000;
+  text-decoration: none;
+  transition: all ease-in-out 250ms;
+  text-align: center;
+  display: flex;
+  height: 55px;
+  justify-content: center;
+  align-items: center;
+}
+/* line 383, ../sass/note.scss */
+#nt-note-actions li a:hover {
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #000;
+}
+
+/* line 391, ../sass/note.scss */
+.note-body textarea,
+.note-body input {
+  margin: 0 0 15px 0;
+  font-family: 'arial', 'helvetica', san-serif;
+  padding: 5px 10px;
+  border: 0 !important;
+  background: #f9f9f9;
+  border-radius: 0 !important;
+  box-shadow: 0 !important;
+}
+
+/* line 403, ../sass/note.scss */
+input.nt-note-submit {
+  background: #bdd537;
+  color: #3a4111;
+  border: 0px;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+  padding: 5px 15px;
+  border-radius: 0 !important;
+  margin: 0;
+  border: 0;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* line 420, ../sass/note.scss */
+input.nt-note-submit:hover {
+  cursor: pointer;
+  background: #fff !important;
+  color: #333 !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* line 428, ../sass/note.scss */
+#nt-utility-links {
+  background: #333;
+  color: #999;
+  margin: 0;
+  border-radius: 0 0 4px 4px;
+  text-align: center;
+}
+/* line 434, ../sass/note.scss */
+#nt-utility-links a {
+  padding: 5px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 12px;
+  transition: all ease-in-out 250ms;
+}
+/* line 443, ../sass/note.scss */
+#nt-utility-links a svg,
+#nt-utility-links a i {
+  margin-right: 5px;
+}
+/* line 447, ../sass/note.scss */
+#nt-utility-links a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* line 453, ../sass/note.scss */
+#nt-utility-links.all-notes {
+  display: flex;
+  justify-content: center;
+}
+
+/* line 458, ../sass/note.scss */
+#nt-utility-links.all-notes a {
+  width: 50%;
+}
+
+/* line 462, ../sass/note.scss */
+#nt-utility-links.all-notes a:first-child {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* line 466, ../sass/note.scss */
+.nt-utility-links a {
+  color: #fff;
+}
+
+/* line 470, ../sass/note.scss */
+.coursenote-embedded-editor {
+  margin: 30px 0;
+}
+/* line 472, ../sass/note.scss */
+.coursenote-embedded-editor #nt-note-actions-wrapper {
+  border: 1px solid #ddd;
+  border-top: 0;
+}
+/* line 476, ../sass/note.scss */
+.coursenote-embedded-editor #nt-note-actions {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* line 481, ../sass/note.scss */
+.nt-note-submit:hover {
+  background: #999;
+  color: #fff;
+}
+
+/* line 486, ../sass/note.scss */
+.nt-note-submit.nt-note-saving {
+  background: #999;
+  color: #fff;
+}
+
+/* line 491, ../sass/note.scss */
+#nt-note-title-bar {
+  border-radius: 4px 4px 0 0;
+  color: #fff;
+  text-align: left;
+  padding: 15px;
+  font-weight: normal;
+  font-size: 16px;
+  background: #000;
+  position: relative;
+}
+
+/* line 501, ../sass/note.scss */
+#nt-note-title-field {
+  padding: 15px;
+  background: #f3f3f3;
+  text-align: left;
+}
+
+/* line 506, ../sass/note.scss */
+#nt-note-title-field small {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* line 512, ../sass/note.scss */
+#nt-note-title-field input[type='text'].nt-note-title {
+  background: transparent;
+  text-align: left;
+  padding: 5px 0;
+  border-bottom: 2px dashed #aaa !important;
+  margin: 0;
+  display: block;
+  font-size: 14px;
+  font-family: 'Arial', 'helvetica','san-serif';
+  box-shadow: none;
+  color: #333;
+}
+
+/* line 524, ../sass/note.scss */
+.nt-note-editor-body {
+  padding: 15px;
+  background: #fff;
+}
+
+/* line 528, ../sass/note.scss */
+#nt-note-actions-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* line 533, ../sass/note.scss */
+.note-body input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* line 538, ../sass/note.scss */
+.nt-note-submit {
+  margin-top: 15px;
+}
+
+/* line 542, ../sass/note.scss */
+.nt-note-wrapper {
+  display: none;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  cursor: all-scroll;
+  background: #fff;
+  border-radius: 4px;
+}
+
+/* line 551, ../sass/note.scss */
+#apf-response {
+  margin: 10px 0;
+  background: #bdd537;
+  color: #3a4111;
+  text-align: center;
+  font-weight: bold;
+  padding: 15px;
+  display: none;
+}
+
+/* line 561, ../sass/note.scss */
+.nt-hide {
+  display: none;
+}
+
+/* line 565, ../sass/note.scss */
+#nt_note_cont .ui-resizable,
+.nt-note-wrapper.ui-resizable {
+  position: fixed !important;
+  z-index: 9999999;
+}
+
+/* line 572, ../sass/note.scss */
+.ldnt-simple-note-list a {
+  display: flex;
+  font-weight: bold;
+  padding: 8px 0;
+  align-items: center;
+}
+/* line 577, ../sass/note.scss */
+.ldnt-simple-note-list a i.nticon-doc {
+  width: 30px;
+  height: 30px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f1f1;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+/* line 591, ../sass/note.scss */
+.ui-resizable-handle {
+  position: absolute;
+  font-size: 0.1px;
+  display: block;
+}
+
+/* line 592, ../sass/note.scss */
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle {
+  display: none;
+}
+
+/* line 593, ../sass/note.scss */
+.ui-resizable-n {
+  cursor: n-resize;
+  height: 7px;
+  width: 100%;
+  top: -5px;
+  left: 0;
+}
+
+/* line 594, ../sass/note.scss */
+.ui-resizable-s {
+  cursor: s-resize;
+  height: 7px;
+  width: 100%;
+  bottom: -5px;
+  left: 0;
+}
+
+/* line 595, ../sass/note.scss */
+.ui-resizable-e {
+  cursor: e-resize;
+  width: 7px;
+  right: -5px;
+  top: 0;
+  height: 100%;
+}
+
+/* line 596, ../sass/note.scss */
+.ui-resizable-w {
+  cursor: w-resize;
+  width: 7px;
+  left: -5px;
+  top: 0;
+  height: 100%;
+}
+
+/* line 597, ../sass/note.scss */
+.ui-resizable-se {
+  cursor: se-resize;
+  width: 12px;
+  height: 12px;
+  right: 1px;
+  bottom: 1px;
+}
+
+/* line 598, ../sass/note.scss */
+.ui-resizable-sw {
+  cursor: sw-resize;
+  width: 9px;
+  height: 9px;
+  left: -5px;
+  bottom: -5px;
+}
+
+/* line 599, ../sass/note.scss */
+.ui-resizable-nw {
+  cursor: nw-resize;
+  width: 9px;
+  height: 9px;
+  left: -5px;
+  top: -5px;
+}
+
+/* line 600, ../sass/note.scss */
+.ui-resizable-ne {
+  cursor: ne-resize;
+  width: 9px;
+  height: 9px;
+  right: -5px;
+  top: -5px;
+}
+
+/* line 604, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing,
+#ldnt-shortcode table.nt-course-list-table {
+  border: 0;
+  width: 100%;
+  margin: 0 0 30px 0;
+}
+/* line 611, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing thead tr th,
+#ldnt-shortcode table.nt-course-list-table thead tr th {
+  background: #333;
+  color: #fff;
+}
+/* line 614, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing thead tr th:first-child,
+#ldnt-shortcode table.nt-course-list-table thead tr th:first-child {
+  width: 7%;
+  max-width: 50px;
+}
+/* line 627, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing tbody tr,
+#ldnt-shortcode table.nt-course-list-table tbody tr {
+  background: #fafafa;
+}
+/* line 629, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing tbody tr td,
+#ldnt-shortcode table.nt-course-list-table tbody tr td {
+  background: #fafafa;
+  border: 0;
+}
+/* line 632, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing tbody tr td.nl-body,
+#ldnt-shortcode table.nt-course-list-table tbody tr td.nl-body {
+  width: 65%;
+}
+/* line 635, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing tbody tr td.nl-select,
+#ldnt-shortcode table.nt-course-list-table tbody tr td.nl-select {
+  width: 5%;
+}
+/* line 638, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing tbody tr td.nl-user,
+#ldnt-shortcode table.nt-course-list-table tbody tr td.nl-user {
+  width: 10%;
+}
+/* line 641, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing tbody tr td.nl-date,
+#ldnt-shortcode table.nt-course-list-table tbody tr td.nl-date {
+  width: 5%;
+}
+/* line 644, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing tbody tr td.nl-actions,
+#ldnt-shortcode table.nt-course-list-table tbody tr td.nl-actions {
+  width: 10%;
+}
+/* line 648, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing tbody tr:nth-child(even),
+#ldnt-shortcode table.nt-course-list-table tbody tr:nth-child(even) {
+  background: #f3f3f3;
+}
+/* line 650, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing tbody tr:nth-child(even) td,
+#ldnt-shortcode table.nt-course-list-table tbody tr:nth-child(even) td {
+  background: #f3f3f3;
+}
+/* line 655, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing tbody span.nl-note-title,
+#ldnt-shortcode table.nt-course-list-table tbody span.nl-note-title {
+  display: block;
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 8px;
+}
+/* line 661, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing tbody span.nl-location,
+#ldnt-shortcode table.nt-course-list-table tbody span.nl-location {
+  display: block;
+  font-size: 12px;
+  line-height: 18px;
+  opacity: 0.75;
+}
+/* line 667, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing tbody span.nl-username,
+#ldnt-shortcode table.nt-course-list-table tbody span.nl-username {
+  display: inline-block;
+  padding: 3px 10px;
+  background: #fff;
+  font-size: 12px;
+  color: #666;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+/* line 676, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing tbody span.nl-username,
+#ldnt-shortcode table.notes-listing tbody td.nl-date,
+#ldnt-shortcode table.nt-course-list-table tbody span.nl-username,
+#ldnt-shortcode table.nt-course-list-table tbody td.nl-date {
+  font-size: 14px;
+  line-height: 20px;
+}
+/* line 681, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing tbody span.nl-actions-wrap,
+#ldnt-shortcode table.nt-course-list-table tbody span.nl-actions-wrap {
+  display: flex;
+  justify-content: flex-end;
+}
+/* line 684, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing tbody span.nl-actions-wrap a,
+#ldnt-shortcode table.nt-course-list-table tbody span.nl-actions-wrap a {
+  display: inline-block;
+  margin-left: 5px;
+}
+/* line 690, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing td, #ldnt-shortcode table.notes-listing th,
+#ldnt-shortcode table.nt-course-list-table td,
+#ldnt-shortcode table.nt-course-list-table th {
+  padding: 20px;
+}
+/* line 693, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing a,
+#ldnt-shortcode table.nt-course-list-table a {
+  text-decoration: none;
+  box-shadow: none;
+  border-bottom: 0;
+}
+/* line 698, ../sass/note.scss */
+#ldnt-shortcode table.notes-listing table,
+#ldnt-shortcode table.nt-course-list-table table {
+  width: 100%;
+}
+@media screen and (max-width: 960px) {
+  /* line 702, ../sass/note.scss */
+  #ldnt-shortcode table.notes-listing thead,
+  #ldnt-shortcode table.nt-course-list-table thead {
+    display: none;
+  }
+  /* line 706, ../sass/note.scss */
+  #ldnt-shortcode table.notes-listing tbody tr,
+  #ldnt-shortcode table.nt-course-list-table tbody tr {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+  }
+  /* line 710, ../sass/note.scss */
+  #ldnt-shortcode table.notes-listing tbody tr td,
+  #ldnt-shortcode table.nt-course-list-table tbody tr td {
+    padding: 0;
+  }
+  /* line 712, ../sass/note.scss */
+  #ldnt-shortcode table.notes-listing tbody tr td.nl-checkbox,
+  #ldnt-shortcode table.nt-course-list-table tbody tr td.nl-checkbox {
+    width: 10%;
+  }
+  /* line 715, ../sass/note.scss */
+  #ldnt-shortcode table.notes-listing tbody tr td.nl-body,
+  #ldnt-shortcode table.nt-course-list-table tbody tr td.nl-body {
+    width: 90%;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #efefef;
+  }
+  /* line 721, ../sass/note.scss */
+  #ldnt-shortcode table.notes-listing tbody tr td.nl-user,
+  #ldnt-shortcode table.nt-course-list-table tbody tr td.nl-user {
+    width: auto;
+    margin-right: 15px;
+  }
+  /* line 725, ../sass/note.scss */
+  #ldnt-shortcode table.notes-listing tbody tr td.nl-date,
+  #ldnt-shortcode table.nt-course-list-table tbody tr td.nl-date {
+    width: auto;
+    margin-right: 15px;
+  }
+  /* line 728, ../sass/note.scss */
+  #ldnt-shortcode table.notes-listing tbody tr td.nl-date span.nl-date-wrap,
+  #ldnt-shortcode table.nt-course-list-table tbody tr td.nl-date span.nl-date-wrap {
+    padding: 3px;
+    display: inline-block;
+  }
+  /* line 733, ../sass/note.scss */
+  #ldnt-shortcode table.notes-listing tbody tr td.nl-actions,
+  #ldnt-shortcode table.nt-course-list-table tbody tr td.nl-actions {
+    width: auto;
+    margin-right: 15px;
+  }
+  /* line 736, ../sass/note.scss */
+  #ldnt-shortcode table.notes-listing tbody tr td.nl-actions span.nl-actions-wrap,
+  #ldnt-shortcode table.nt-course-list-table tbody tr td.nl-actions span.nl-actions-wrap {
+    display: inline-block;
+  }
+  /* line 740, ../sass/note.scss */
+  #ldnt-shortcode table.notes-listing tbody tr td:nth-child(3),
+  #ldnt-shortcode table.nt-course-list-table tbody tr td:nth-child(3) {
+    margin-left: 5%;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* line 750, ../sass/note.scss */
+  #ldnt-shortcode table.notes-listing tbody tr,
+  #ldnt-shortcode table.nt-course-list-table tbody tr {
+    display: block;
+  }
+  /* line 753, ../sass/note.scss */
+  #ldnt-shortcode table.notes-listing tbody td,
+  #ldnt-shortcode table.nt-course-list-table tbody td {
+    width: 100% !important;
+    display: block;
+    text-align: center;
+    margin: 0 0 10px 0 !important;
+    padding: 0;
+  }
+}
+
+/* line 765, ../sass/note.scss */
+.nt-breadcrumbs {
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* line 772, ../sass/note.scss */
+table.nt-course-list-table > thead th {
+  border-bottom: 1px solid #ddd;
+}
+/* line 775, ../sass/note.scss */
+table.nt-course-list-table > tbody > tr > td {
+  border-bottom: 1px solid #eee;
+}
+
+/* line 780, ../sass/note.scss */
+.note-col {
+  text-align: right;
+}
+
+/* line 784, ../sass/note.scss */
+.ldnotes-hide {
+  display: none;
+}
+
+/* line 788, ../sass/note.scss */
+.learndash-notes-utilities {
+  list-style: none;
+  margin: 0 !important;
+  padding: 0px !important;
+  float: right;
+}
+
+/* line 795, ../sass/note.scss */
+.learndash-notes-utilities li {
+  display: inline-block;
+  margin: 0 0 0 10px !important;
+  padding: 0 !important;
+}
+
+/* line 801, ../sass/note.scss */
+.learndash-notes-utilities li a {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  transition: all ease-in-out 250ms;
+  border-radius: 100%;
+  display: inline-block;
+  color: #333;
+  font-size: 18px;
+  text-align: center;
+  box-shadow: 0 0 0 5px #efefef;
+}
+
+/* line 814, ../sass/note.scss */
+.learndash-notes-utilities li a:hover {
+  transform: scale(1.25);
+}
+
+/* line 818, ../sass/note.scss */
+#ldnt-shortcode table,
+#ldnt-shortcode table tr,
+#ldnt-shortcode table td,
+#ldnt-shortcode table th {
+  border: 0;
+  border-collapse: collapse;
+}
+
+/* line 826, ../sass/note.scss */
+#ldnt-shortcode table tr td,
+#ldnt-shortcode table tr th {
+  padding: 20px;
+}
+
+/* line 831, ../sass/note.scss */
+#ldnt-shortcode tbody tr td {
+  background: #f3f3f3;
+}
+
+/* line 835, ../sass/note.scss */
+#ldnt-shortcode tbody tr:nth-child(even) td {
+  background: #fafafa;
+}
+
+/* line 839, ../sass/note.scss */
+#ldnt-shortcode tbody h5 a {
+  text-decoration: none;
+}
+
+/* line 843, ../sass/note.scss */
+#ldnt-shortcode .ldnt-note-nav {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none;
+}
+
+/* line 849, ../sass/note.scss */
+#ldnt-shortcode .ldnt-note-nav {
+  float: right;
+  text-align: right;
+}
+
+/* line 854, ../sass/note.scss */
+#ldnt-shortcode .ldnt-note-nav ul {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-block;
+}
+
+/* line 860, ../sass/note.scss */
+#ldnt-shortcode .ldnt-note-nav ul li {
+  list-style: none;
+  display: inline-block;
+  margin: 0 0 0 10px !important;
+  padding: 0 !important;
+}
+
+/* line 867, ../sass/note.scss */
+#ldnt-shortcode .lds-bulk-download,
+#ldnt-shortcode .ldnt-note-nav ul li a {
+  display: inline-block;
+  padding: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 10px 15px;
+  background: #fafafa;
+  letter-spacing: 1px;
+  background: #333;
+  text-decoration: none;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  line-height: 1.5em;
+}
+
+/* line 885, ../sass/note.scss */
+#ldnt-shortcode .ldnt-note-nav ul li a:hover {
+  background: #555;
+}
+
+/* line 889, ../sass/note.scss */
+#ldnt-shortcode .ldnt-note-filters {
+  margin: 20px 0;
+}
+/* line 891, ../sass/note.scss */
+#ldnt-shortcode .ldnt-note-filters form {
+  display: flex;
+  justify-content: space-between;
+}
+/* line 894, ../sass/note.scss */
+#ldnt-shortcode .ldnt-note-filters form .ldnt-search-field {
+  display: flex;
+  background: #f3f3f3;
+  justify-content: space-between;
+}
+/* line 898, ../sass/note.scss */
+#ldnt-shortcode .ldnt-note-filters form .ldnt-search-field input[type="text"] {
+  padding: 5px 15px;
+  font-size: 16px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  display: inline-block;
+}
+/* line 906, ../sass/note.scss */
+#ldnt-shortcode .ldnt-note-filters form .ldnt-search-field #ldnt-search-btn {
+  border: 0;
+  padding: 5px 15px;
+  font-size: 16px;
+  border-radius: 0;
+  box-shadow: none;
+}
+/* line 914, ../sass/note.scss */
+#ldnt-shortcode .ldnt-note-filters form .ldnt-select-wrap {
+  border: 1px solid #ddd;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: #fff;
+  min-width: 100px;
+}
+/* line 923, ../sass/note.scss */
+#ldnt-shortcode .ldnt-note-filters form .ldnt-select-wrap select {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  margin: 0;
+  display: block;
+  font-size: 16px;
+  padding: 8px 40px 8px 8px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  z-index: 5;
+}
+/* line 937, ../sass/note.scss */
+#ldnt-shortcode .ldnt-note-filters form .ldnt-select-wrap::after {
+  position: absolute;
+  font-size: 16px;
+  display: block;
+  content: '↓';
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+@media screen and (max-width: 768px) {
+  /* line 891, ../sass/note.scss */
+  #ldnt-shortcode .ldnt-note-filters form {
+    flex-wrap: wrap;
+    flex-direction: reverse;
+  }
+  /* line 950, ../sass/note.scss */
+  #ldnt-shortcode .ldnt-note-filters form .ldnt-select-wrap,
+  #ldnt-shortcode .ldnt-note-filters form .ldnt-search-field {
+    width: 100%;
+  }
+  /* line 954, ../sass/note.scss */
+  #ldnt-shortcode .ldnt-note-filters form .ldnt-select-wrap {
+    margin-bottom: 8px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* line 965, ../sass/note.scss */
+  .nt-note-wrapper *,
+  .nt-note-tab * {
+    box-sizing: border-box !important;
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+  }
+
+  /* line 972, ../sass/note.scss */
+  .nt-note-wrapper {
+    box-shadow: none;
+    position: fixed !important;
+    width: auto !important;
+    height: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    top: auto !important;
+    padding: 0 !important;
+    max-width: unset !important;
+    min-width: unset !important;
+    border-radius: 0px;
+    flex-direction: column;
+    z-index: 1000;
+    justify-content: space-between;
+  }
+  /* line 974, ../sass/note.scss */
+  .nt-note-wrapper.active {
+    display: flex;
+  }
+  /* line 991, ../sass/note.scss */
+  .nt-note-wrapper #nt-note-title-bar {
+    display: none;
+  }
+  /* line 994, ../sass/note.scss */
+  .nt-note-wrapper .nt-note-header {
+    position: relative;
+  }
+  /* line 997, ../sass/note.scss */
+  .nt-note-wrapper .nt-close-icon {
+    /* RESET */
+    border: 0;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    text-shadow: none;
+    height: auto;
+    width: auto;
+    /* END RESET */
+    background: #000;
+    top: -50px;
+    right: 0;
+    border-radius: 0%;
+    color: #fff !important;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    display: flex;
+    line-height: 1em;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+  }
+  /* line 1022, ../sass/note.scss */
+  .nt-note-wrapper .nt-note-editor-body {
+    padding: 15px 15px 0 15px;
+    height: auto;
+    height: 260px;
+    margin-bottom: 15px;
+    overflow: scroll;
+  }
+  /* line 1029, ../sass/note.scss */
+  .nt-note-wrapper #nt-note-body_ifr {
+    width: 100% !important;
+  }
+  /* line 1032, ../sass/note.scss */
+  .nt-note-wrapper #wp-nt-note-body-wrap {
+    height: 200px;
+  }
+  /* line 1035, ../sass/note.scss */
+  .nt-note-wrapper .nt-note-title-bar {
+    display: none;
+  }
+  /* line 1038, ../sass/note.scss */
+  .nt-note-wrapper .nt-note-title-field {
+    padding: 10px;
+  }
+  /* line 1042, ../sass/note.scss */
+  .nt-note-wrapper #nt-note-actions li {
+    height: 45px;
+  }
+  /* line 1044, ../sass/note.scss */
+  .nt-note-wrapper #nt-note-actions li a,
+  .nt-note-wrapper #nt-note-actions li input.nt-note-submit {
+    height: 45px;
+    margin: 0;
+  }
+  /* line 1051, ../sass/note.scss */
+  .nt-note-wrapper .nt-note-submit,
+  .nt-note-wrapper .nt-note-title {
+    font-size: 14px !important;
+  }
+  /* line 1055, ../sass/note.scss */
+  .nt-note-wrapper br {
+    display: none;
+  }
+
+  /* line 1060, ../sass/note.scss */
+  .nt-note-submit {
+    margin: 0;
+  }
+
+  /* line 1064, ../sass/note.scss */
+  #wp-nt-note-body-editor-container {
+    overflow-x: auto;
+  }
+
+  /* line 1068, ../sass/note.scss */
+  #nt-note-body_ifr {
+    width: auto !important;
+    min-height: unset !important;
+  }
+
+  /* line 1073, ../sass/note.scss */
+  .nt-note-wrapper .mce-statusbar {
+    display: none;
+  }
+
+  /* line 1077, ../sass/note.scss */
+  .nt-hide-mobile,
+  .nt-reset-dimensions {
+    display: none !important;
+  }
+}
+@font-face {
+  font-family: 'ldntnotepad';
+  src: url("../assets/font/fontello.eot?283350512");
+  src: url("../assets/font/fontello.eot?283350512#iefix") format("embedded-opentype"), url("../assets/font/fontello.woff2?283350512") format("woff2"), url("../assets/font/fontello.woff?283350512") format("woff"), url("../assets/font/fontello.ttf?283350512") format("truetype"), url("../assets/font/fontello.svg?283350512#fontello") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?28335056#fontello') format('svg');
+  }
+}
+*/
+/* line 1106, ../sass/note.scss */
+.ldnt-alert {
+  padding: 15px;
+  text-align: center;
+  background: #fcf8e3;
+  font-weight: bold;
+  margin: 30px 0;
+  border: 2px solid #ebe7d2;
+}
+
+/* line 1115, ../sass/note.scss */
+.nticon-print:before,
+.nticon-file-word:before,
+.nticon-file-pdf:before,
+.nticon-trash:before,
+[class^="nticon-"]:before, [class*=" nticon-"]:before {
+  font-family: "ldntnotepad";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+/* line 1154, ../sass/note.scss */
+.nticon-print:before {
+  content: '\e800';
+}
+
+/* line 1155, ../sass/note.scss */
+.nticon-file-word:before {
+  content: '\e801';
+}
+
+/* line 1156, ../sass/note.scss */
+.nticon-trash:before {
+  content: '\e802';
+}
+
+/* line 1157, ../sass/note.scss */
+.nticon-doc:before {
+  content: '\e803';
+}
+
+/*
+
+*/
