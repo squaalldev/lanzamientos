@@ -251,3 +251,57 @@ li.beauty_li::before,
 .fa-user:before, .fa-graduation-cap:before, .fa-question-circle:before {
 	display: none;
 }
+
+/* === OCULTAR BUDDYPANEL (menu global) === */
+aside.buddypanel { display: none !important; }
+
+body.bb-buddypanel #page.site,
+body.buddypanel-open #page.site {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.bb-buddypanel.buddypanel-open.bb-sfwd-aside .site-header:not(.site-header--elementor) {
+  width: 100% !important;
+}
+
+/* === DOS COLUMNAS CON SCROLL INDEPENDIENTE === */
+#learndash-content .bb-grid.grid {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  height: calc(100vh - 76px) !important;
+  overflow: hidden !important;
+}
+
+.lms-topic-sidebar-wrapper {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  flex: 0 0 320px !important;
+  max-width: 320px !important;
+  height: 100% !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+.lms-topic-sidebar-data {
+  position: static !important;
+  left: auto !important;
+  top: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  transform: none !important;
+}
+
+#learndash-content .bb-grid.grid > *:not(.lms-topic-sidebar-wrapper) {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  overflow-y: auto !important;
+  margin-left: 0 !important;
+  padding: 0 32px !important;
+}
