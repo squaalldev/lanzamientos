@@ -305,16 +305,3 @@ body.buddypanel-open #page.site {
   margin-left: 0 !important;
   padding: 0 32px !important;
 }
-
-/* === AUDIO: EVITAR CORTE DE LOS TIEMPOS === */
-.mejs-container .mejs-time,
-.mejs-container .mejs-currenttime-container,
-.mejs-container .mejs-duration-container {
-  width: auto !important;
-  min-width: 56px !important;
-  max-width: none !important;
-  overflow: visible !important;
-  white-space: nowrap !important;
-  text-overflow: clip !important;
-  box-sizing: content-box !important;
-}
