@@ -318,3 +318,12 @@ body.buddypanel-open #page.site {
   text-overflow: clip !important;
   box-sizing: content-box !important;
 }
+
+/* === OCULTAR CUADERNO DE NOTAS === */
+.nt-note-tab,
+.nt-note-wrapper,
+a.nt-note-tab,
+.ldnt-new-note,
+.ldnt-style-circle {
+  display: none !important;
+}

@@ -1,61 +1,4 @@
 /* This is your custom Javascript */
-/* === PROGRESO LOCAL (copia sin servidor) === */
-(function () {
-  var K = 'ecw_completadas';
-
-  function norm(p) {
-    return p.replace(/index\.html?$/i, '').replace(/\/+$/, '').toLowerCase();
-  }
-  function leer() { try { return JSON.parse(localStorage.getItem(K) || '[]'); } catch (e) { return []; } }
-  function grabar(l) { try { localStorage.setItem(K, JSON.stringify(l)); } catch (e) {} }
-  function yo() { return norm(location.pathname); }
-
-  function pintar() {
-    var L = leer(), mia = yo(), hechas = 0, total = 0;
-
-    var b = document.querySelector('.learndash_mark_complete_button');
-    if (b) {
-      var h = L.indexOf(mia) > -1;
-      b.value = h ? '\u2713 Completado' : 'Marcar como completado';
-      b.style.opacity = h ? '0.65' : '';
-    }
-
-    document.querySelectorAll('.lms-topic-sidebar-wrapper a.bb-lms-title-wrap, .lms-topic-sidebar-wrapper a[href]').forEach(function (a) {
-      var r;
-      try { r = norm(new URL(a.href, location.href).pathname); } catch (e) { return; }
-      if (!a.querySelector('.i-progress')) return;
-      total++;
-      if (L.indexOf(r) === -1) return;
-      hechas++;
-      var pr = a.querySelector('.i-progress');
-      pr.classList.remove('i-progress-not-completed');
-      pr.classList.add('i-progress-completed');
-      var t = a.querySelector('.bb-not-completed-item, .bb-lms-title');
-      if (t) t.style.textDecoration = 'line-through';
-    });
-
-    if (total > 0) {
-      var pct = Math.round(hechas / total * 100);
-      document.querySelectorAll('.ld-progress-bar-percentage').forEach(function (e) { e.style.width = pct + '%'; });
-      document.querySelectorAll('.course-completion-rate').forEach(function (e) { e.textContent = pct + '% Completado'; });
-    }
-  }
-
-  document.addEventListener('submit', function (e) {
-    var f = e.target.closest && e.target.closest('form.sfwd-mark-complete');
-    if (!f) return;
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    var L = leer(), mia = yo(), i = L.indexOf(mia);
-    if (i > -1) { L.splice(i, 1); } else { L.push(mia); }
-    grabar(L);
-    pintar();
-  }, true);
-
-  pintar();
-  document.addEventListener('DOMContentLoaded', pintar);
-  setTimeout(pintar, 900);
-})();
 /* === REPRODUCTOR DE AUDIO ESTILO PODCAST (copia local) === */
 (function () {
   var CSS_ID = 'ecw-podcast-css';
@@ -221,3 +164,233 @@
 
 /* === TAMANOS PLAY Y VELOCIDAD === */
 (function(){var s=document.createElement('style');s.id='ecw-tam';s.textContent='.podcast-player .play{width:48px !important;height:48px !important;flex:0 0 48px !important;min-width:48px !important}.podcast-player .playIcon{width:24px !important;height:24px !important}.podcast-player .btn.pill.speed{width:auto !important;min-width:32px !important;height:32px !important;flex:0 0 auto !important;padding:0 9px !important;border-radius:9px !important;font-size:12px !important;white-space:nowrap !important}';document.head.appendChild(s);})();
+
+/* === BARRA DE NAVEGACION INFERIOR === */
+(function () {
+  var K = 'ecw_completadas';
+  var VISTO = 'ecw_tip_teclado';
+
+  function norm(p){ return p.replace(/index\.html?$/i,'').replace(/\/+$/,'').toLowerCase(); }
+  function leer(){ try { return JSON.parse(localStorage.getItem(K)||'[]'); } catch(e){ return []; } }
+  function grabar(l){ try { localStorage.setItem(K, JSON.stringify(l)); } catch(e){} }
+  function yo(){ return norm(location.pathname); }
+
+  var IC_IZQ  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="ecwnav-ic"><path d="M15 18l-6-6 6-6"/></svg>';
+  var IC_DER  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="ecwnav-ic"><path d="M9 18l6-6-6-6"/></svg>';
+  var IC_OK   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" class="ecwnav-ic ecwnav-check"><path d="M4 12.5l5.2 5.2L20 6.5"/></svg>';
+
+  var CSS = [
+    '.ecwnav{position:fixed;left:0;right:0;bottom:0;z-index:9000;background:#fff;',
+      'border-top:1px solid #E7E9EC;box-shadow:0 -3px 16px rgba(18,43,70,.08);padding:10px 20px;',
+      'font-family:Karla,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:normal}',
+    '.ecwnav *{box-sizing:border-box}',
+    '.ecwnav-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:18px}',
+    '.ecwnav-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #E7E9EC;',
+      'border-radius:100px;padding:9px 18px;font:inherit;font-size:13.5px;color:#122B46;cursor:pointer;',
+      'white-space:nowrap;transition:border-color .15s,background .15s;text-decoration:none}',
+    '.ecwnav-btn:hover{border-color:#0000FF;background:#F7F8FF}',
+    '.ecwnav-btn.off{opacity:.42;cursor:not-allowed;pointer-events:none}',
+    '.ecwnav-mid{flex:1;min-width:0}',
+    '.ecwnav-lab{display:flex;justify-content:space-between;gap:14px;font-size:11.5px;color:#5A6474;margin-bottom:6px}',
+    '.ecwnav-lab b{color:#122B46;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
+    '.ecwnav-bar{height:5px;background:#E9EBF0;border-radius:99px;overflow:hidden}',
+    '.ecwnav-fill{height:100%;width:0;background:linear-gradient(90deg,#0000FF,#385DFF);border-radius:99px;',
+      'transition:width .55s cubic-bezier(.2,.7,.3,1)}',
+    '.ecwnav-ok{display:inline-flex;align-items:center;gap:9px;background:#0000FF;border:1.5px solid #0000FF;',
+      'border-radius:100px;padding:11px 22px;color:#fff;font:inherit;font-size:13.5px;font-weight:700;',
+      'cursor:pointer;white-space:nowrap;transition:background .18s,border-color .18s,transform .12s}',
+    '.ecwnav-ok:hover{background:#0000d6;border-color:#0000d6}',
+    '.ecwnav-ok:active{transform:scale(.97)}',
+    '.ecwnav-ok.hecho{background:#00B163;border-color:#00B163}',
+    '.ecwnav-ic{width:16px;height:16px;flex:0 0 16px}',
+    '.ecwnav-check{display:none}',
+    '.ecwnav kbd{display:inline-grid;place-items:center;min-width:19px;height:19px;padding:0 5px;',
+      'background:#EEF0F6;color:#5A6474;border:1px solid #DCDFE8;border-bottom-width:2px;border-radius:5px;',
+      'font-family:inherit;font-size:11px;font-weight:700;opacity:0;transition:opacity .18s}',
+    '.ecwnav:hover kbd{opacity:1}',
+    '.ecwnav-ok kbd{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.3);color:#fff}',
+    '.ecwtip{position:fixed;left:50%;transform:translateX(-50%) translateY(14px);bottom:96px;z-index:9100;',
+      'background:#122B46;color:#fff;padding:13px 20px;border-radius:12px;font-size:13px;display:flex;',
+      'align-items:center;gap:16px;box-shadow:0 10px 30px rgba(18,43,70,.3);opacity:0;pointer-events:none;',
+      'transition:all .3s;font-family:Karla,system-ui,sans-serif}',
+    '.ecwtip.on{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}',
+    '.ecwtip kbd{opacity:1;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.28);color:#fff;',
+      'border-radius:5px;padding:2px 7px;font-size:11.5px;font-weight:700;margin:0 2px}',
+    '.ecwtip button{background:rgba(255,255,255,.16);border:0;color:#fff;border-radius:8px;padding:6px 12px;',
+      'font:inherit;font-size:12px;cursor:pointer}',
+    '.ecwtoast{position:fixed;left:50%;transform:translateX(-50%) translateY(14px);bottom:96px;z-index:9200;',
+      'background:#00B163;color:#fff;padding:11px 22px;border-radius:100px;font-size:13.5px;font-weight:700;',
+      'opacity:0;pointer-events:none;transition:all .28s;box-shadow:0 8px 24px rgba(0,177,99,.35);',
+      'font-family:Karla,system-ui,sans-serif}',
+    '.ecwtoast.on{opacity:1;transform:translateX(-50%) translateY(0)}',
+    'body{padding-bottom:96px !important}',
+    '.learndash_next_prev_link{display:none !important}',
+    '@media(max-width:680px){',
+      '.ecwnav-in{flex-wrap:wrap;gap:10px}',
+      '.ecwnav-mid{order:-1;flex:0 0 100%}',
+      '.ecwnav-btn{flex:0 0 52px;justify-content:center;padding:11px 0}',
+      '.ecwnav-btn span.txt{display:none}',
+      '.ecwnav kbd{display:none}',
+      '.ecwnav-ic{width:19px;height:19px;flex:0 0 19px}',
+      '.ecwnav-ok{flex:1 1 auto;justify-content:center;padding:13px 18px;min-width:0}',
+      '.ecwnav-ok .ecwnav-txt{display:none}',
+      '.ecwnav-ok .ecwnav-ic:not(.ecwnav-check){display:none}',
+      '.ecwnav-check{display:block;width:25px;height:25px;flex:0 0 25px;color:#7BFFC0;stroke-width:2.8}',
+      '.ecwnav-ok.hecho .ecwnav-check{color:#fff}',
+      'body{padding-bottom:150px !important}',
+    '}'
+  ].join('');
+
+  function enlaces() {
+    var prev = null, next = null;
+    var zona = document.querySelector('.learndash_next_prev_link');
+    if (zona) {
+      var a = zona.querySelector('a.prev-link'); if (a) prev = a.href;
+      var b = zona.querySelector('a.next-link'); if (b) next = b.href;
+    }
+    if (!prev || !next) {
+      var lista = [], mia = yo(), idx = -1;
+      document.querySelectorAll('.lms-topic-sidebar-wrapper a[href]').forEach(function (x) {
+        if (!x.querySelector('.i-progress')) return;
+        var r; try { r = norm(new URL(x.href, location.href).pathname); } catch(e){ return; }
+        lista.push({ href: x.href, ruta: r });
+      });
+      lista.forEach(function (o, i) { if (o.ruta === mia) idx = i; });
+      if (idx > 0 && !prev) prev = lista[idx-1].href;
+      if (idx >= 0 && idx < lista.length-1 && !next) next = lista[idx+1].href;
+    }
+    return { prev: prev, next: next };
+  }
+
+  function contexto() {
+    var lista = [], mia = yo(), idx = -1, hechas = 0;
+    var L = leer();
+    document.querySelectorAll('.lms-topic-sidebar-wrapper a[href]').forEach(function (x) {
+      if (!x.querySelector('.i-progress')) return;
+      var r; try { r = norm(new URL(x.href, location.href).pathname); } catch(e){ return; }
+      var t = x.querySelector('.bb-lms-title, .bb-not-completed-item');
+      lista.push({ ruta: r, titulo: t ? t.textContent.trim() : '' });
+      if (L.indexOf(r) > -1) hechas++;
+    });
+    lista.forEach(function (o, i) { if (o.ruta === mia) idx = i; });
+    return { total: lista.length, idx: idx, hechas: hechas, lista: lista };
+  }
+
+  function toast(txt) {
+    var t = document.querySelector('.ecwtoast');
+    if (!t) { t = document.createElement('div'); t.className = 'ecwtoast'; document.body.appendChild(t); }
+    t.textContent = txt;
+    t.classList.add('on');
+    setTimeout(function () { t.classList.remove('on'); }, 1600);
+  }
+
+  function pintar() {
+    var nav = document.querySelector('.ecwnav');
+    if (!nav) return;
+    var c = contexto(), L = leer(), hecho = L.indexOf(yo()) > -1;
+    var pct = c.total ? Math.round(c.hechas / c.total * 100) : 0;
+
+    nav.querySelector('.ecwnav-fill').style.width = pct + '%';
+    nav.querySelector('.ecwnav-pct').textContent = pct;
+
+    var etq = nav.querySelector('.ecwnav-nombre');
+    if (c.idx >= 0 && c.total) etq.textContent = 'Lección ' + (c.idx+1) + ' de ' + c.total;
+    else etq.textContent = document.title.split('–')[0].trim().substring(0, 60);
+
+    var b = nav.querySelector('.ecwnav-ok');
+    b.classList.toggle('hecho', hecho);
+    b.querySelector('.ecwnav-txt').textContent = hecho ? 'Completada · Continuar' : 'Completar y continuar';
+
+    document.querySelectorAll('.lms-topic-sidebar-wrapper a[href]').forEach(function (a) {
+      var r; try { r = norm(new URL(a.href, location.href).pathname); } catch(e){ return; }
+      if (L.indexOf(r) === -1) return;
+      var p = a.querySelector('.i-progress');
+      if (p) { p.classList.remove('i-progress-not-completed'); p.classList.add('i-progress-completed'); }
+      var t = a.querySelector('.bb-not-completed-item, .bb-lms-title');
+      if (t) t.style.textDecoration = 'line-through';
+    });
+    document.querySelectorAll('.ld-progress-bar-percentage').forEach(function(e){ e.style.width = pct + '%'; });
+    document.querySelectorAll('.course-completion-rate').forEach(function(e){ e.textContent = pct + '% Completado'; });
+  }
+
+  function completar(saltar) {
+    var L = leer(), mia = yo(), i = L.indexOf(mia);
+    if (i === -1) { L.push(mia); grabar(L); toast('\u2713 Lección completada'); }
+    pintar();
+    if (saltar) {
+      var e = enlaces();
+      if (e.next) setTimeout(function(){ location.href = e.next; }, 550);
+    }
+  }
+
+  function construir() {
+    if (document.querySelector('.ecwnav')) return;
+    if (!document.querySelector('.learndash_next_prev_link, .lms-topic-sidebar-wrapper, form.sfwd-mark-complete')) return;
+
+    var s = document.createElement('style');
+    s.id = 'ecwnav-css';
+    s.textContent = CSS;
+    document.head.appendChild(s);
+
+    var e = enlaces();
+    var nav = document.createElement('nav');
+    nav.className = 'ecwnav';
+    nav.innerHTML =
+      '<div class="ecwnav-in">' +
+        '<a class="ecwnav-btn ecwnav-prev' + (e.prev ? '' : ' off') + '" href="' + (e.prev || '#') + '">' +
+          IC_IZQ + '<span class="txt">Anterior</span><kbd>←</kbd></a>' +
+        '<div class="ecwnav-mid">' +
+          '<div class="ecwnav-lab"><b class="ecwnav-nombre"></b>' +
+          '<span><span class="ecwnav-pct">0</span>% del curso</span></div>' +
+          '<div class="ecwnav-bar"><div class="ecwnav-fill"></div></div>' +
+        '</div>' +
+        '<button class="ecwnav-ok" type="button">' + IC_OK +
+          '<span class="ecwnav-txt">Completar y continuar</span>' + IC_DER + '<kbd>C</kbd></button>' +
+        '<a class="ecwnav-btn ecwnav-next' + (e.next ? '' : ' off') + '" href="' + (e.next || '#') + '">' +
+          '<span class="txt">Siguiente</span>' + IC_DER + '<kbd>→</kbd></a>' +
+      '</div>';
+    document.body.appendChild(nav);
+
+    nav.querySelector('.ecwnav-ok').addEventListener('click', function () { completar(true); });
+    pintar();
+
+    if (!localStorage.getItem(VISTO)) {
+      var tip = document.createElement('div');
+      tip.className = 'ecwtip';
+      tip.innerHTML = '<span>Puedes navegar con el teclado: <kbd>←</kbd> <kbd>→</kbd> entre lecciones y <kbd>C</kbd> para completar.</span>' +
+                      '<button type="button">Entendido</button>';
+      document.body.appendChild(tip);
+      setTimeout(function(){ tip.classList.add('on'); }, 1400);
+      tip.querySelector('button').addEventListener('click', function () {
+        tip.classList.remove('on');
+        try { localStorage.setItem(VISTO, '1'); } catch(e){}
+        setTimeout(function(){ tip.remove(); }, 400);
+      });
+    }
+  }
+
+  document.addEventListener('submit', function (e) {
+    var f = e.target.closest && e.target.closest('form.sfwd-mark-complete');
+    if (!f) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    completar(false);
+  }, true);
+
+  document.addEventListener('keydown', function (e) {
+    if (/input|textarea|select/i.test(e.target.tagName) || e.target.isContentEditable) return;
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
+    var nav = document.querySelector('.ecwnav');
+    if (!nav) return;
+    if (e.key === 'ArrowLeft')  { var a = nav.querySelector('.ecwnav-prev'); if (a && !a.classList.contains('off')) location.href = a.href; }
+    if (e.key === 'ArrowRight') { var b = nav.querySelector('.ecwnav-next'); if (b && !b.classList.contains('off')) location.href = b.href; }
+    if (e.key.toLowerCase() === 'c') { completar(true); }
+  });
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', construir);
+  else construir();
+  setTimeout(construir, 1200);
+})();
+/* === SCROLL LIMPIO AL CAMBIAR DE LECCION === */
+(function(){if('scrollRestoration' in history){history.scrollRestoration='manual';}window.scrollTo(0,0);document.addEventListener('DOMContentLoaded',function(){window.scrollTo(0,0);});window.addEventListener('pageshow',function(){window.scrollTo(0,0);});})();
+/* === TRANSICION SUAVE === */
+(function(){var s=document.createElement('style');s.textContent='html{opacity:0}html.ecw-listo{opacity:1;transition:opacity .18s}';(document.head||document.documentElement).appendChild(s);function ver(){document.documentElement.classList.add('ecw-listo');window.scrollTo(0,0);}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',ver);}else{ver();}setTimeout(ver,900);window.addEventListener('pageshow',ver);})();
