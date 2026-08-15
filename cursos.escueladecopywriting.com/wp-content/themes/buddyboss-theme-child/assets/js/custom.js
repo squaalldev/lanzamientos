@@ -223,7 +223,7 @@
       'opacity:0;pointer-events:none;transition:all .28s;box-shadow:0 8px 24px rgba(0,177,99,.35);',
       'font-family:Karla,system-ui,sans-serif}',
     '.ecwtoast.on{opacity:1;transform:translateX(-50%) translateY(0)}',
-    'body{padding-bottom:100px !important}',
+    'body{padding-bottom:80px !important}',
     '.learndash_next_prev_link{display:none !important}',
     '@media(max-width:680px){',
       '.ecwnav-in{flex-wrap:wrap;gap:10px}',
@@ -237,7 +237,7 @@
       '.ecwnav-ok .ecwnav-ic:not(.ecwnav-check){display:none}',
       '.ecwnav-check{display:block;width:25px;height:25px;flex:0 0 25px;color:#7BFFC0;stroke-width:2.8}',
       '.ecwnav-ok.hecho .ecwnav-check{color:#fff}',
-      'body{padding-bottom:100px !important}',
+      'body{padding-bottom:80px !important}',
     '}'
   ].join('');
 
@@ -956,4 +956,146 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar);
   else iniciar();
   setTimeout(iniciar, 700);
+})();
+
+/* === UNA SOLA BARRA DE SCROLL === */
+(function () {
+  var s = document.createElement('style');
+  s.id = 'ecw-scroll-unico';
+  s.textContent =
+    '@media(min-width:901px){' +
+      'html.ecw-una-barra,body.ecw-una-barra{overflow-y:hidden !important;height:100% !important}' +
+    '}';
+  document.head.appendChild(s);
+
+  function ajustar() {
+    /* solo en lecciones: las que tienen el indice lateral con scroll propio */
+    var esLeccion = !!document.querySelector('#learndash-content .bb-grid.grid') &&
+                    !!document.querySelector('.lms-topic-sidebar-wrapper');
+    document.documentElement.classList.toggle('ecw-una-barra', esLeccion);
+    document.body.classList.toggle('ecw-una-barra', esLeccion);
+
+    if (!esLeccion) {
+      document.documentElement.style.setProperty('overflow-y', 'auto', 'important');
+      document.documentElement.style.setProperty('height', 'auto', 'important');
+      document.body.style.setProperty('overflow-y', 'auto', 'important');
+      document.body.style.setProperty('height', 'auto', 'important');
+    } else {
+      ['overflow-y','height'].forEach(function (p) {
+        document.documentElement.style.removeProperty(p);
+        document.body.style.removeProperty(p);
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ajustar);
+  else ajustar();
+  setTimeout(ajustar, 500);
+  setTimeout(ajustar, 1400);
+  window.addEventListener('resize', ajustar);
+})();
+
+/* === CONVERTIR TITULARES DE VIDEO A H4 === */
+(function () {
+  function convertir() {
+    document.querySelectorAll('strong').forEach(function (s) {
+      var t = (s.textContent || '').trim();
+      if (!/^V[IÍ]DEO\s*\d/i.test(t) || t.length > 130) return;
+      if (s.closest('h1,h2,h3,h4,h5,h6')) return;
+      if (s.getAttribute('data-ecw-h4')) return;
+
+      var p = s.parentElement;
+      if (!p) return;
+      if (p.tagName !== 'P' && p.tagName !== 'DIV' && p.tagName !== 'SPAN') return;
+      /* el contenedor debe llevar solo este titular */
+      if (p.textContent.trim() !== t) return;
+
+      var h = document.createElement('h4');
+      h.setAttribute('data-ecw-h4', '1');
+      var sp = document.createElement('span');
+      sp.textContent = t;
+      /* tomar el color del span de un h4 existente */
+      var modelo = document.querySelector('h4:not([data-ecw-h4]) span, h4:not([data-ecw-h4]) strong');
+      sp.style.setProperty('color', '#FF6427', 'important');
+      sp.style.setProperty('font-weight', '700', 'important');
+      h.appendChild(sp);
+      var caja = (p.tagName === 'SPAN' && p.parentElement) ? p.parentElement : p;
+      caja.parentNode.replaceChild(h, caja);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', convertir);
+  else convertir();
+  setTimeout(convertir, 700);
+  setTimeout(convertir, 1600);
+})();
+
+/* === ESPACIO AL FINAL DEL INDICE === */
+(function () {
+  var s = document.createElement('style');
+  s.id = 'ecw-indice-fin';
+  s.textContent =
+    '@media(min-width:901px){' +
+      '.lms-topic-sidebar-wrapper{padding-bottom:40px !important}' +
+      '.lms-topic-sidebar-wrapper .lms-lessions-list{padding-bottom:20px !important}' +
+    '}' +
+    '@media(max-width:900px){' +
+      '.lms-topic-sidebar-wrapper.ecw-abierto{padding-bottom:40px !important}' +
+    '}';
+  document.head.appendChild(s);
+})();
+
+/* === OCULTAR BOTON COMPLETADO ORIGINAL === */
+(function () {
+  var s = document.createElement('style');
+  s.id = 'ecw-sin-boton';
+  s.textContent =
+    'form.sfwd-mark-complete,' +
+    '.learndash_mark_complete_button,' +
+    '#learndash_mark_complete_button,' +
+    '.sfwd-mark-complete,' +
+    '.ld-content-actions{' +
+      'display:none !important;height:0 !important;min-height:0 !important;' +
+      'margin:0 !important;padding:0 !important;overflow:hidden !important}';
+  document.head.appendChild(s);
+})();
+
+/* === COMENTARIOS: SOLO LECTURA === */
+(function () {
+  var s = document.createElement('style');
+  s.id = 'ecw-comentarios-lectura';
+  s.textContent =
+    /* formulario de nuevo comentario */
+    '#commentform,.comment-form,#respond,.comment-respond,' +
+    '.comment-reply-title,#reply-title,' +
+    '#submit,.comment-form .submit,' +
+    /* responder a un comentario */
+    '.comment-reply-link,.bb-comment-reply,.ld-comment-reply,' +
+    /* acciones del encabezado (expandir, ordenar) */
+    '.ld-focus-comments__heading-actions,' +
+    '.ld-focus-comments__header .ld-expand-button{' +
+      'display:none !important;height:0 !important;margin:0 !important;' +
+      'padding:0 !important;overflow:hidden !important}' +
+
+    /* que el bloque de comentarios quede siempre desplegado */
+    '.ld-focus-comments__comments,' +
+    '.ld-focus-comments__comments-items{display:block !important;' +
+      'max-height:none !important;overflow:visible !important;opacity:1 !important}' +
+    '.ld-focus-comments{padding-bottom:8px !important}';
+  document.head.appendChild(s);
+
+  /* quitar el enlace "Publica un comentario" del encabezado */
+  function limpiar() {
+    document.querySelectorAll('.ld-focus-comments__heading, .ld-focus-comments__header').forEach(function (h) {
+      h.querySelectorAll('a,button').forEach(function (a) {
+        var t = (a.textContent || '').trim().toLowerCase();
+        if (/publica|comentar|responder|deja un comentario/.test(t)) {
+          a.style.setProperty('display', 'none', 'important');
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', limpiar);
+  else limpiar();
+  setTimeout(limpiar, 800);
 })();
