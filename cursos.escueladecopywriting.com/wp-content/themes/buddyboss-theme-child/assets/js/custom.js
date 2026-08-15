@@ -891,3 +891,69 @@
     '@media(max-width:600px){.ecwh{margin:12px 0 20px !important}}';
   document.head.appendChild(s);
 })();
+
+/* === MARCAR LA FILA ACTUAL === */
+(function () {
+  function norm(p){ return p.replace(/index\.html?$/i,'').replace(/\/+$/,'').toLowerCase(); }
+  function yo(){ return norm(location.pathname); }
+
+  var CSS =
+    /* fila resaltada: modulo o leccion, la que corresponda */
+    '.ecw-fila-actual{position:relative;background:rgba(0,0,255,.06) !important;' +
+      'border-radius:8px;transition:background .25s}' +
+    '.ecw-fila-actual::before{content:"";position:absolute;left:-8px;top:6px;bottom:6px;width:3px;' +
+      'background:#0000FF;border-radius:99px}' +
+    '.ecw-fila-actual .bb-lesson-title,' +
+    '.ecw-fila-actual .bb-lms-title,' +
+    '.ecw-fila-actual .bb-title{color:#0000FF !important;font-weight:700 !important}';
+
+  function marcar() {
+    var mia = yo();
+    document.querySelectorAll('.ecw-fila-actual').forEach(function (e) { e.classList.remove('ecw-fila-actual'); });
+
+    /* 1. leccion dentro de un modulo */
+    var hecho = false;
+    document.querySelectorAll('.lms-topic-item a[href]').forEach(function (a) {
+      if (hecho) return;
+      var r; try { r = norm(new URL(a.href, location.href).pathname); } catch(e){ return; }
+      if (r !== mia) return;
+      var fila = a.closest('.lms-topic-item') || a;
+      fila.classList.add('ecw-fila-actual');
+      hecho = true;
+    });
+    if (!hecho) {
+      /* 2. cabecera del modulo (estamos en la pagina del modulo) */
+      document.querySelectorAll('a.bb-lesson-head').forEach(function (a) {
+        if (hecho) return;
+        var r; try { r = norm(new URL(a.href, location.href).pathname); } catch(e){ return; }
+        if (r !== mia) return;
+        a.classList.add('ecw-fila-actual');
+        hecho = true;
+      });
+    }
+
+    /* centrar el indice en la fila marcada */
+    var fila = document.querySelector('.ecw-fila-actual');
+    if (!fila) return;
+    var caja = document.querySelector('.lms-topic-sidebar-wrapper');
+    if (!caja) return;
+    var rc = caja.getBoundingClientRect();
+    var re = fila.getBoundingClientRect();
+    var delta = (re.top - rc.top) - (caja.clientHeight / 2) + (re.height / 2);
+    caja.scrollTop = Math.max(0, Math.min(caja.scrollTop + delta, caja.scrollHeight - caja.clientHeight));
+  }
+
+  function iniciar() {
+    if (!document.getElementById('ecw-fila-css')) {
+      var s = document.createElement('style');
+      s.id = 'ecw-fila-css';
+      s.textContent = CSS;
+      document.head.appendChild(s);
+    }
+    marcar();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar);
+  else iniciar();
+  setTimeout(iniciar, 700);
+})();
