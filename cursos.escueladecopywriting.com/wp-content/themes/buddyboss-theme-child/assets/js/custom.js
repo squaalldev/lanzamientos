@@ -998,7 +998,7 @@
 /* === CONVERTIR TITULARES DE VIDEO A H4 === */
 (function () {
   function convertir() {
-    document.querySelectorAll('strong').forEach(function (s) {
+    document.querySelectorAll('strong, b').forEach(function (s) {
       var t = (s.textContent || '').trim();
       if (!/^V[IÍ]DEO\s*\d/i.test(t) || t.length > 130) return;
       if (s.closest('h1,h2,h3,h4,h5,h6')) return;
